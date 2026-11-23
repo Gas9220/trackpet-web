@@ -30,9 +30,12 @@ for language in en it fr es; do
     webp $source/iphone/${screen%%:*}.png 660 $output/${screen##*:}.webp
     webp $source/iphone-dark/${screen%%:*}.png 660 $output/${screen##*:}-dark.webp
   done
-  webp $source/mac/01-window.png 1100 $output/mac-window.webp
-  webp $source/mac-dark/01-window.png 1100 $output/mac-window-dark.webp
-  webp $source/mac/02-menu-bar.png 360 $output/mac-menu-bar.webp
-  webp $source/mac-dark/02-menu-bar.png 360 $output/mac-menu-bar-dark.webp
+  # The Mac's, taken by hand (README, "Screenshots"), once they're there.
+  if [[ -f $source/mac/01-window.png ]]; then
+    webp $source/mac/01-window.png 1100 $output/mac-window.webp
+    webp $source/mac-dark/01-window.png 1100 $output/mac-window-dark.webp
+    webp $source/mac/02-menu-bar.png 360 $output/mac-menu-bar.webp
+    webp $source/mac-dark/02-menu-bar.png 360 $output/mac-menu-bar-dark.webp
+  fi
   echo "wrote images/$language: $(du -sk $output/*.webp | awk '{sum += $1} END {print sum}') KB"
 done

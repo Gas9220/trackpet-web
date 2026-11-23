@@ -13,6 +13,7 @@ src/guide/<lang>.html    The guide's text in each language: long, so in files of
 src/strings/<lang>.json  The text in each language: en, it, fr, es
 build.py                 Writes the pages from those, and sitemap.xml with every page in every language
 make-app-icons.sh        Renders the app's icon into images/ (app-icon, apple-touch-icon, favicon)
+take-screenshots.sh      Takes the iPhone screenshots in the simulator, with screenshots/TrackpetScreenshots.swift
 make-images.sh           Writes the screenshots in WebP from the originals in ../trackpet-assets
 make-social-images.swift Draws images/<lang>/social.jpg, the picture shown with links to the site
 make-guide-pdfs.sh       Prints each language's guide to its guide/trackpet-guide.pdf
@@ -38,38 +39,40 @@ Each language uses the app's own words, from its string catalog (`../Trackpet/Tr
 
 ## Before the screenshots
 
-The site can go up before the screenshots are taken. What needs a file that isn't there yet sits between `<!-- if:screenshots -->` and `<!-- end:screenshots -->` in the templates, and `build.py` leaves it out until `images/en/pets.webp` exists: the hero's phone, the Screenshots section and its menu link, the health report's phone and the Mac's window. Until then the hero and the For the Vet section show a pet's records and its health report drawn in HTML (`<!-- if:no-screenshots -->`, the `.record-card` and `.report-sheet` styles), with Paco's sample data, and the Mac section is text alone. The guide's Download PDF button works the same way, with `guide/trackpet-guide.pdf` (`<!-- if:guide-pdf -->`).
+The site can go up before the screenshots are taken. What needs a file that isn't there yet sits between `<!-- if:screenshots -->` and `<!-- end:screenshots -->` in the templates, and `build.py` leaves it out until `images/en/pets.webp` exists: the hero's phone, the Screenshots section and its menu link, and the health report's phone. The Mac's window and panel wait for `images/en/mac-window.webp` the same way (`mac-screenshots`). Until then the hero and the For the Vet section show a pet's records and its health report drawn in HTML (`<!-- if:no-screenshots -->`, the `.record-card` and `.report-sheet` styles), with Paco's sample data, and the Mac section is text alone. The guide's Download PDF button works the same way, with `guide/trackpet-guide.pdf` (`<!-- if:guide-pdf -->`).
 
 Once the screenshots are in `images/<lang>/`, `python3 build.py` puts them all in, and leaves the drawn ones out.
 
 ## Screenshots
 
-Take them on the Mac that runs the simulator, where the app is built (the MacBook Air this site was made on is too slow for it). The full-size originals go in `../trackpet-assets/screenshots/<lang>/iphone/`, `<lang>/iphone-dark/`, `<lang>/mac/` and `<lang>/mac-dark/` (outside this repository, next to the app), so they can be reused for the App Store page. As HabitTracker's: in the iOS Simulator (iPhone 18 Pro Max), with the app's sample data, whose breeds, allergies and notes are translated too:
+Take them on the Mac that runs the simulator well (the MacBook Pro M1 Pro; this site was made on the 8 GB MacBook Air, too slow for it), with the projects side by side: `Trackpet/`, `trackpet-web/` and, made by the script, `trackpet-assets/`. The full-size originals go in `../trackpet-assets/screenshots/<lang>/iphone/`, `iphone-dark/`, `mac/` and `mac-dark/`, outside this repository, so they can be reused for the App Store page.
+
+### iPhone, automatically
 
 ```bash
-xcrun simctl status_bar <iPhone> override --time 9:41 --dataNetwork wifi --wifiMode active --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100
-xcrun simctl launch <iPhone> <bundle ID> -ui-testing -sample-data -AppleLanguages "(it)" -AppleLocale it_IT
+git -C ../Trackpet pull
+./take-screenshots.sh
 ```
 
-The screens, named as `make-images.sh` expects them, each in light and in dark (`xcrun simctl ui <iPhone> appearance dark`), so the two themes show the same screens with the same day's data:
+It boots the iPhone 18 Pro Max simulator (another one: `./take-screenshots.sh "iPhone 17 Pro Max"`, or a few languages: `./take-screenshots.sh "iPhone 18 Pro Max" it fr`), sets the status bar to 9:41 and full, builds Trackpet once, then runs `screenshots/TrackpetScreenshots.swift`, a UI test, once per language and appearance, with the app's sample data, whose breeds, allergies and notes are translated too. It finds every element by its accessibility identifier, so one test serves the four languages. Each run takes about a minute, so the whole set about ten. The test is copied into Trackpet's UI tests for the run and taken out again, so Trackpet's repository is left as it was: the app's CLAUDE.md asks that screenshot tests are never committed. When a run fails, the script says which and keeps its log; a changed screen or identifier in the app is fixed in the test here.
+
+The screens, named as `make-images.sh` expects them:
 
 | File | Screen |
 |---|---|
-| `01-pets.png` | The Pets list, sorted by name |
+| `01-pets.png` | The Pets list |
 | `02-pet.png` | Paco's page, its Records |
-| `03-weights.png` | Paco's weights: the chart over a year, with its target |
-| `04-vaccinations.png` | Paco's vaccinations, with a booster due |
-| `05-therapy.png` | A therapy's page, with today's doses, one given |
-| `06-calendar.png` | The Calendar tab, a day with several records selected |
+| `03-weights.png` | Paco's weights over a year |
+| `04-vaccinations.png` | Paco's vaccinations, the boosters first |
+| `05-therapy.png` | The therapy for Paco's fever, this morning's dose given |
+| `06-calendar.png` | The Calendar tab, on today |
 | `07-documents.png` | Paco's documents, by year |
-| `08-costs.png` | Harry's costs, a year with the chart |
+| `08-costs.png` | Harry's costs |
 | `09-clinic.png` | Clinica Veterinaria Rossi's page |
-| `10-settings.png` | Settings: Language, units and App Icon |
+| `10-settings.png` | Settings, scrolled to the units and the app icons |
 | `11-health-report.png` | Paco's health report, open in Quick Look |
 
-A throwaway UI test (never committed) can take them, as the app's CLAUDE.md describes for screenshots, run once per language and theme. On the Mac, `01-window.png` (Paco's page beside the sidebar) and `02-menu-bar.png` (the menu bar's panel with sample pets); their sizes go in the `width` and `height` of `mac-window` and `mac-menu-bar` in `src/pages/home.html`.
-
-Then, with `cwebp` (`brew install webp`):
+Then look at them (they're the site's first impression: a screen caught mid-animation or with a banner is taken again), and with `cwebp` (`brew install webp`):
 
 ```bash
 ./make-images.sh
@@ -77,7 +80,25 @@ python3 build.py
 swift make-social-images.swift
 ```
 
-The pages show copies in WebP, which look the same as PNG at this size in about a fifteenth of the room: the iPhone screenshots at half size (660 × 1434), the Mac's window 1100 wide and panel 360 wide. Only `social.jpg` stays a JPEG, since not everything that shows a link's picture reads WebP, and the icons stay PNGs.
+The first build with them turns on the hero's phone, the Screenshots section and the health report's phone, and leaves the drawn ones out.
+
+### Mac, by hand
+
+Optional: until they're there, the Mac section is text alone (`<!-- if:mac-screenshots -->`). Build and run Trackpet for the Mac with the sample data, the window at its default size:
+
+```bash
+xcodebuild -project ../Trackpet/Trackpet.xcodeproj -scheme Trackpet -destination 'platform=macOS' -derivedDataPath /tmp/trackpet-mac.noindex build
+open /tmp/trackpet-mac.noindex/Build/Products/Debug/Trackpet.app --args -ui-testing -sample-data
+```
+
+Select Paco, then, for each language (`-AppleLanguages "(it)"` after `--args`) and each appearance (System Settings › Appearance):
+
+```bash
+screencapture -o -W ../trackpet-assets/screenshots/en/mac/01-window.png     # click the window
+screencapture -o -W ../trackpet-assets/screenshots/en/mac/02-menu-bar.png   # open the paw's panel, then click it
+```
+
+(`mac-dark/` for the dark ones; `-o` leaves out the shadow.) Then put each image's size in the `width` and `height` of `mac-window` and `mac-menu-bar` in `src/pages/home.html` (the window 1100 wide, the panel 360, as `make-images.sh` writes them), and run the three commands above.
 
 ## The app icon
 

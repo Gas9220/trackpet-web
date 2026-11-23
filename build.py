@@ -15,7 +15,8 @@ In the templates, {{key}} is replaced by that string as it is (strings may conta
 meta descriptions). A key missing from a language stops the build, so no page is half translated.
 
 What needs a file that may not be there yet sits between <!-- if:screenshots --> and
-<!-- end:screenshots --> (the screenshots, from images/en/pets.webp), or <!-- if:guide-pdf --> and
+<!-- end:screenshots --> (the iPhone's screenshots, from images/en/pets.webp), <!-- if:mac-screenshots -->
+and <!-- end:mac-screenshots --> (the Mac's, from images/en/mac-window.webp), or <!-- if:guide-pdf --> and
 <!-- end:guide-pdf --> (guide/trackpet-guide.pdf): left out until the file is there, as is what's
 between <!-- if:no-screenshots --> and <!-- end:no-screenshots --> from then on. So the site can go
 up before the screenshots are taken, and they show up at the next build.
@@ -77,6 +78,7 @@ REDIRECT_SCRIPT = """  <script>
 # Each condition, and the file that makes it true.
 CONDITIONS = {
     "screenshots": ROOT / "images" / "en" / "pets.webp",
+    "mac-screenshots": ROOT / "images" / "en" / "mac-window.webp",
     "guide-pdf": ROOT / "guide" / "trackpet-guide.pdf",
 }
 
