@@ -1,0 +1,1259 @@
+/* Trackpet website. The blue is the app's accent color, iOS's own blue (#0088FF), as in its Classic icon. */
+
+:root {
+  --blue: #0088ff;
+  --blue-strong: #006be0;
+  --blue-soft: rgba(0, 136, 255, 0.1);
+  /* A deeper blue behind white text, so buttons stay readable in both modes. */
+  --button: #0071e3;
+  --button-hover: #0062c4;
+  --bg: #ffffff;
+  --bg-alt: #f4f7fb;
+  --card: #ffffff;
+  --text: #1d1d1f;
+  --text-2: #5c6470;
+  --border: rgba(15, 23, 42, 0.08);
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
+  --device: #1d1d1f;
+  --radius: 20px;
+  --max: 1120px;
+  /* The header's button: which icon it shows. */
+  --moon: block;
+  --sun: none;
+  color-scheme: light dark;
+}
+
+/* The dark theme follows the device, unless one was chosen with the header's button (data-theme on
+   <html>). :where() keeps these rules as weak as plain :root, so the print styles still win. */
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    --blue: #3ba2ff;
+    --blue-strong: #5cb3ff;
+    --blue-soft: rgba(59, 162, 255, 0.14);
+    --bg: #0b0c0f;
+    --bg-alt: #121419;
+    --card: #17191f;
+    --text: #f5f5f7;
+    --text-2: #a3a9b4;
+    --border: rgba(255, 255, 255, 0.09);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+    --device: #2a2c31;
+    --moon: none;
+    --sun: block;
+  }
+}
+
+:root:where([data-theme="dark"]) {
+  --blue: #3ba2ff;
+  --blue-strong: #5cb3ff;
+  --blue-soft: rgba(59, 162, 255, 0.14);
+  --bg: #0b0c0f;
+  --bg-alt: #121419;
+  --card: #17191f;
+  --text: #f5f5f7;
+  --text-2: #a3a9b4;
+  --border: rgba(255, 255, 255, 0.09);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --device: #2a2c31;
+  --moon: none;
+  --sun: block;
+  color-scheme: dark;
+}
+
+:root:where([data-theme="light"]) {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 100vw counts the scrollbar, so the full-width gallery can be a few pixels too wide. */
+main {
+  overflow-x: clip;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* A picture only chooses the light or the dark file: its image lays out as if it weren't there. */
+picture {
+  display: contents;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1, h2, h3 {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* MARK: Header */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand img {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+.site-nav {
+  display: flex;
+  gap: 24px;
+  font-size: 15px;
+}
+
+.site-nav a {
+  color: var(--text-2);
+}
+
+.site-nav a:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.header-end {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-controls {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+/* MARK: Theme button */
+
+.theme-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.theme-button:hover {
+  color: var(--text);
+}
+
+.theme-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.theme-button .moon {
+  display: var(--moon);
+}
+
+.theme-button .sun {
+  display: var(--sun);
+}
+
+/* MARK: Language menu */
+
+.language-menu {
+  position: relative;
+}
+
+.language-menu summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--text-2);
+  font-size: 14px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.language-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.language-menu summary:hover {
+  color: var(--text);
+}
+
+.language-menu .globe {
+  width: 16px;
+  height: 16px;
+}
+
+.language-menu .chevron {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.15s;
+}
+
+.language-menu[open] .chevron {
+  transform: rotate(180deg);
+}
+
+.language-menu ul {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 20;
+  min-width: 180px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.16);
+}
+
+.language-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 12px;
+  border-radius: 9px;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.language-menu a:hover {
+  background: var(--blue-soft);
+  text-decoration: none;
+}
+
+.language-menu a[aria-current] {
+  font-weight: 600;
+}
+
+.language-menu .tick {
+  width: 16px;
+  height: 16px;
+  color: var(--blue);
+  visibility: hidden;
+}
+
+.language-menu a[aria-current] .tick {
+  visibility: visible;
+}
+
+/* MARK: Hero */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 72px 0 0;
+  background:
+    radial-gradient(60% 50% at 75% 30%, rgba(0, 136, 255, 0.22), transparent 70%),
+    radial-gradient(40% 40% at 10% 0%, rgba(0, 136, 255, 0.1), transparent 70%);
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.hero-icon {
+  width: 88px;
+  height: 88px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 136, 255, 0.35);
+  margin-bottom: 28px;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 700;
+}
+
+.hero h1 .accent {
+  color: var(--blue);
+}
+
+.hero .lead {
+  font-size: clamp(18px, 2.2vw, 21px);
+  color: var(--text-2);
+  margin: 20px 0 32px;
+  max-width: 34em;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 16px;
+  background: var(--button);
+  color: #fff;
+  transition: background 0.15s;
+}
+
+.button:hover {
+  background: var(--button-hover);
+  text-decoration: none;
+}
+
+.button.secondary {
+  background: var(--blue-soft);
+  color: var(--blue);
+}
+
+.button.secondary:hover {
+  background: color-mix(in srgb, var(--blue) 20%, transparent);
+}
+
+.status-note {
+  margin-top: 18px;
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.platforms li {
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text-2);
+  background: var(--card);
+}
+
+.hero-devices {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-top: 8px;
+}
+
+.hero-devices .phone {
+  width: min(340px, 78%);
+  margin-bottom: -96px;
+}
+
+/* MARK: Device frames */
+
+.phone {
+  border: 10px solid var(--device);
+  border-radius: 54px;
+  overflow: hidden;
+  background: var(--device);
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.25);
+}
+
+.phone img {
+  border-radius: 44px;
+  width: 100%;
+  height: auto;
+}
+
+/* MARK: Sections */
+
+section {
+  padding: 96px 0;
+}
+
+.section-alt {
+  background: var(--bg-alt);
+}
+
+.section-head {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 56px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+
+.section-head h2 {
+  font-size: clamp(30px, 4.2vw, 44px);
+  font-weight: 700;
+}
+
+.section-head p {
+  color: var(--text-2);
+  font-size: 19px;
+  margin: 16px 0 0;
+}
+
+/* MARK: Features */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.feature {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+.feature-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  margin-bottom: 18px;
+}
+
+.feature-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.feature h3 {
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.feature p {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 16px;
+}
+
+/* MARK: Screenshots */
+
+/* Full width, with the first and last screenshots lined up with the page's content. */
+.gallery {
+  --edge: max(24px, calc(50vw - var(--max) / 2 + 24px));
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 var(--edge);
+  padding: 8px var(--edge) 32px;
+  margin: 0 calc(50% - 50vw);
+  scrollbar-width: thin;
+}
+
+.shot {
+  flex: 0 0 auto;
+  width: 260px;
+  margin: 0;
+  scroll-snap-align: center;
+}
+
+.shot .phone {
+  border-width: 8px;
+  border-radius: 44px;
+  box-shadow: var(--shadow);
+}
+
+.shot .phone img {
+  border-radius: 36px;
+}
+
+.shot figcaption {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.shot figcaption strong {
+  display: block;
+  font-size: 16px;
+}
+
+.shot figcaption span {
+  display: block;
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.gallery-hint {
+  text-align: center;
+  color: var(--text-2);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* MARK: Apple Watch */
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.split h2 {
+  font-size: clamp(30px, 4.2vw, 44px);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.split p {
+  color: var(--text-2);
+  font-size: 19px;
+  margin: 0 0 16px;
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  display: grid;
+  gap: 12px;
+}
+
+.checklist li {
+  position: relative;
+  padding-left: 32px;
+}
+
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10.5l2.6 2.6L14 7.5' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 20px no-repeat;
+}
+
+/* The health report's phone, beside the list of what it has. */
+.split-phone {
+  display: flex;
+  justify-content: center;
+}
+
+.split-phone .phone {
+  width: min(300px, 80%);
+}
+
+/* MARK: Mockups */
+
+/* Until the screenshots are taken: a pet's records and its health report, drawn as the app shows them. */
+.hero-records {
+  display: flex;
+  justify-content: center;
+}
+
+.record-card,
+.report-sheet {
+  width: min(380px, 100%);
+  padding: 24px;
+  border-radius: 28px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.16);
+}
+
+.record-pet,
+.report-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.record-pet strong,
+.report-head strong {
+  display: block;
+  font-size: 22px;
+}
+
+.record-pet span,
+.report-head span {
+  color: var(--text-2);
+  font-size: 15px;
+}
+
+.record-avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  color: #fff;
+  background: linear-gradient(160deg, #3ba2ff, #0062c4);
+}
+
+.record-avatar svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* The hero centers its text on a phone; the card keeps the app's layout. */
+.hero-records .record-card {
+  text-align: left;
+}
+
+.record-rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.record-rows li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+
+.record-symbol {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  color: #fff;
+  background: var(--tint);
+}
+
+.record-symbol svg {
+  width: 19px;
+  height: 19px;
+}
+
+.record-title {
+  flex: 1;
+  font-weight: 600;
+}
+
+.record-value {
+  color: var(--text-2);
+  font-size: 15px;
+  text-align: right;
+}
+
+.record-value.warning {
+  color: #e07800;
+}
+
+.report-sheet {
+  justify-self: center;
+  border-radius: 6px;
+  /* A page, so always light, as the PDF is. */
+  background: #fff;
+  color: #1d1d1f;
+}
+
+.report-head span {
+  color: #5c6470;
+}
+
+.report-sheet dl {
+  margin: 0 0 18px;
+}
+
+.report-sheet dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  font-size: 15px;
+}
+
+.report-sheet dt {
+  color: #5c6470;
+}
+
+.report-sheet dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+}
+
+.report-chart {
+  height: 80px;
+  margin-bottom: 18px;
+  padding: 8px;
+  border-radius: 10px;
+  color: #34c759;
+  background: rgba(52, 199, 89, 0.1);
+}
+
+.report-chart svg {
+  width: 100%;
+  height: 100%;
+}
+
+.report-lines span {
+  display: block;
+  height: 8px;
+  margin-top: 10px;
+  border-radius: 4px;
+  background: rgba(15, 23, 42, 0.08);
+}
+
+.report-lines span:nth-child(2) {
+  width: 80%;
+}
+
+.report-lines span:nth-child(3) {
+  width: 55%;
+}
+
+/* Without the Mac's screenshots, its text alone. */
+.container.narrow {
+  max-width: 760px;
+}
+
+/* MARK: Mac */
+
+/* The window gets the wider column; the menu bar's panel overlaps its corner. */
+.split.mac {
+  grid-template-columns: 1.25fr 1fr;
+}
+
+.mac-shots {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.mac-window {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.18);
+}
+
+.mac-menu {
+  position: absolute;
+  right: -16px;
+  bottom: -40px;
+  width: 34%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.24);
+}
+
+/* MARK: Privacy */
+
+.privacy-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.privacy-points .feature {
+  text-align: center;
+}
+
+.privacy-points .feature-icon {
+  margin: 0 auto 18px;
+}
+
+/* MARK: Contact */
+
+.contact-card {
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 48px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.contact-card h2 {
+  font-size: clamp(30px, 4.2vw, 40px);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.contact-card > p {
+  color: var(--text-2);
+  font-size: 18px;
+  margin: 0 auto 28px;
+  max-width: 34em;
+}
+
+.contact-card .actions {
+  justify-content: center;
+}
+
+.email {
+  font-weight: 600;
+  font-size: 18px;
+  margin: 16px 0 0;
+}
+
+.faq {
+  text-align: left;
+  margin-top: 40px;
+  border-top: 1px solid var(--border);
+}
+
+.faq details {
+  border-bottom: 1px solid var(--border);
+  padding: 18px 0;
+}
+
+.faq summary {
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  color: var(--blue);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.faq details[open] summary::after {
+  content: "–";
+}
+
+.faq details p {
+  margin: 10px 0 0;
+  color: var(--text-2);
+}
+
+/* MARK: Footer */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0;
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.site-footer .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.site-footer nav {
+  display: flex;
+  gap: 20px;
+}
+
+.site-footer a {
+  color: var(--text-2);
+}
+
+/* MARK: Pages */
+
+/* Support and the privacy policy, each a page of its own under the header. */
+.page {
+  padding-top: 72px;
+}
+
+.section-head h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+}
+
+/* A link to the page with more, under a section. */
+.section-more {
+  text-align: center;
+  margin: 32px 0 0;
+  font-weight: 600;
+}
+
+/* The privacy policy: text at a comfortable reading width. */
+.prose {
+  max-width: 720px;
+}
+
+.prose h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+}
+
+.prose .updated {
+  color: var(--text-2);
+  font-size: 15px;
+  margin: 8px 0 24px;
+}
+
+.prose .lead {
+  font-size: 20px;
+  margin: 0;
+}
+
+.prose h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 36px 0 8px;
+}
+
+.prose p {
+  color: var(--text-2);
+  margin: 0;
+}
+
+/* MARK: Guide */
+
+.guide-download {
+  margin: 24px 0 0;
+}
+
+.guide-contents {
+  margin: 32px 0 8px;
+  padding: 20px 24px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.prose .guide-contents h2 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.guide-contents ol {
+  margin: 0;
+  padding-left: 20px;
+  columns: 2;
+  column-gap: 32px;
+}
+
+/* Padding, not margin, which a column's top would drop: the two columns start level. */
+.guide-contents li {
+  padding: 4px 0;
+  break-inside: avoid;
+}
+
+/* Below the sticky header when a link from the contents scrolls to it. */
+.guide h2[id] {
+  scroll-margin-top: 84px;
+}
+
+.guide ul {
+  margin: 12px 0 0;
+  padding-left: 22px;
+  color: var(--text-2);
+}
+
+.guide li {
+  margin: 8px 0;
+}
+
+.guide li::marker {
+  color: var(--blue);
+}
+
+.guide strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.guide p + p,
+.guide ul + p {
+  margin-top: 12px;
+}
+
+/* MARK: Page not found */
+
+.not-found {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  text-align: center;
+}
+
+.not-found img {
+  display: block;
+  border-radius: 22px;
+}
+
+.not-found h1 {
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 700;
+}
+
+.not-found p {
+  color: var(--text-2);
+  margin: 0;
+}
+
+/* MARK: Small screens */
+
+/* Section links in some languages are long: below this width the header keeps the language menu only. */
+@media (max-width: 1000px) {
+  .site-nav {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero .container,
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 48px;
+    text-align: center;
+  }
+
+  .hero .lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-icon {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .actions,
+  .platforms {
+    justify-content: center;
+  }
+
+  .features,
+  .privacy-points {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .split .split-phone,
+  .split .report-sheet {
+    order: -1;
+  }
+
+  .split.mac {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .guide-contents ol {
+    columns: 1;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .site-nav {
+    display: none;
+  }
+
+  section {
+    padding: 64px 0;
+  }
+
+  .features,
+  .privacy-points {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-devices .phone {
+    width: 72%;
+  }
+
+  .gallery {
+    padding: 8px 16px 24px;
+    margin: 0 -16px;
+  }
+
+  .shot {
+    width: 220px;
+  }
+
+  .mac-menu {
+    right: 0;
+    width: 42%;
+  }
+
+  .contact-card {
+    padding: 32px 20px;
+  }
+}
+
+/* Beside the theme button, the language's name no longer fits: it goes, so the app's stays whole. */
+@media (max-width: 370px) {
+  .language-menu summary span {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* MARK: Print */
+
+/* What a printed page shows, and the guide's PDF (make-guide-pdfs.sh): the text in light colors,
+   with the brand on top and without the menus, the footer or the Download PDF button. */
+@media print {
+  @page {
+    size: A4;
+    margin: 16mm 18mm;
+  }
+
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f4f7fb;
+    --text: #1d1d1f;
+    --text-2: #3f4650;
+    --border: rgba(15, 23, 42, 0.12);
+  }
+
+  body {
+    background: #ffffff;
+  }
+
+  .site-header {
+    position: static;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 0;
+  }
+
+  .site-header .header-end,
+  .site-footer,
+  .guide-download,
+  .section-more {
+    display: none;
+  }
+
+  .page {
+    padding-top: 8px;
+  }
+
+  .guide h2 {
+    break-after: avoid;
+  }
+
+  .guide p,
+  .guide li,
+  .guide-contents {
+    break-inside: avoid;
+  }
+}

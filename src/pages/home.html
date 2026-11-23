@@ -1,0 +1,328 @@
+    <!-- MARK: Hero -->
+    <section class="hero">
+      <div class="container">
+        <div>
+          <img class="hero-icon" src="{{root}}images/app-icon.png" alt="{{hero_icon_alt|attr}}" width="88" height="88">
+          <h1>{{hero_title}}</h1>
+          <p class="lead">{{hero_lead}}</p>
+          <div class="actions">
+            <a class="button" href="#features">{{hero_features_button}}</a>
+            <a class="button secondary" href="#contact">{{hero_contact_button}}</a>
+          </div>
+          <p class="status-note">{{hero_status}}</p>
+          <ul class="platforms" aria-label="{{platforms_label|attr}}">
+            <li>iPhone</li>
+            <li>iPad</li>
+            <li>Mac</li>
+          </ul>
+        </div>
+<!-- if:screenshots -->
+        <div class="hero-devices">
+          <div class="phone">
+            <picture><source media="(prefers-color-scheme: dark)" srcset="{{images}}pets-dark.webp"><img src="{{images}}pets.webp" alt="{{hero_phone_alt|attr}}" width="660" height="1434"></picture>
+          </div>
+        </div>
+<!-- end:screenshots -->
+<!-- if:no-screenshots -->
+        <!-- Until the screenshots are taken: a pet's records, drawn as the app's page shows them. -->
+        <div class="hero-records" aria-hidden="true">
+          <div class="record-card">
+            <div class="record-pet">
+              <div class="record-avatar"><svg><use href="#i-paw"/></svg></div>
+              <div><strong>Paco</strong><span>{{sample_kind}}</span></div>
+            </div>
+            <ul class="record-rows">
+              <li><span class="record-symbol" style="--tint: #34c759"><svg><use href="#i-scale"/></svg></span><span class="record-title">{{sample_weights}}</span><span class="record-value">29.8 kg</span></li>
+              <li><span class="record-symbol" style="--tint: #ff9500"><svg><use href="#i-syringe"/></svg></span><span class="record-title">{{sample_vaccinations}}</span><span class="record-value warning">{{sample_booster}}</span></li>
+              <li><span class="record-symbol" style="--tint: #af52de"><svg><use href="#i-pill"/></svg></span><span class="record-title">{{sample_therapies}}</span><span class="record-value">{{sample_therapy_day}}</span></li>
+              <li><span class="record-symbol" style="--tint: #0088ff"><svg><use href="#i-calendar"/></svg></span><span class="record-title">{{sample_appointments}}</span><span class="record-value">{{sample_appointment}}</span></li>
+              <li><span class="record-symbol" style="--tint: #ff2d55"><svg><use href="#i-report"/></svg></span><span class="record-title">{{sample_report}}</span><span class="record-value">PDF</span></li>
+            </ul>
+          </div>
+        </div>
+<!-- end:no-screenshots -->
+      </div>
+    </section>
+
+    <!-- MARK: Features -->
+    <section id="features" class="section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{{nav_features}}</span>
+          <h2>{{features_title}}</h2>
+          <p>{{features_lead}}</p>
+        </div>
+        <div class="features">
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-paw"/></svg></div>
+            <h3>{{feature_pets_title}}</h3>
+            <p>{{feature_pets_text}}</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-chart"/></svg></div>
+            <h3>{{feature_weights_title}}</h3>
+            <p>{{feature_weights_text}}</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-syringe"/></svg></div>
+            <h3>{{feature_vaccinations_title}}</h3>
+            <p>{{feature_vaccinations_text}}</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-pill"/></svg></div>
+            <h3>{{feature_therapies_title}}</h3>
+            <p>{{feature_therapies_text}}</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-bell"/></svg></div>
+            <h3>{{feature_reminders_title}}</h3>
+            <p>{{feature_reminders_text}}</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-calendar"/></svg></div>
+            <h3>{{feature_calendar_title}}</h3>
+            <p>{{feature_calendar_text}}</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-note"/></svg></div>
+            <h3>{{feature_documents_title}}</h3>
+            <p>{{feature_documents_text}}</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-report"/></svg></div>
+            <h3>{{feature_report_title}}</h3>
+            <p>{{feature_report_text}}</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-clinic"/></svg></div>
+            <h3>{{feature_clinics_title}}</h3>
+            <p>{{feature_clinics_text}}</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-coins"/></svg></div>
+            <h3>{{feature_costs_title}}</h3>
+            <p>{{feature_costs_text}}</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-mic"/></svg></div>
+            <h3>{{feature_siri_title}}</h3>
+            <p>{{feature_siri_text}}</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-laptop"/></svg></div>
+            <h3>{{feature_ipad_mac_title}}</h3>
+            <p>{{feature_ipad_mac_text}}</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-export"/></svg></div>
+            <h3>{{feature_data_title}}</h3>
+            <p>{{feature_data_text}}</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-globe"/></svg></div>
+            <h3>{{feature_yours_title}}</h3>
+            <p>{{feature_yours_text}}</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-access"/></svg></div>
+            <h3>{{feature_access_title}}</h3>
+            <p>{{feature_access_text}}</p>
+          </article>
+        </div>
+        <p class="section-more"><a href="{{home}}guide/">{{guide_link}}</a></p>
+      </div>
+    </section>
+
+<!-- if:screenshots -->
+    <!-- MARK: Screenshots -->
+    <section id="screenshots">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{{nav_screenshots}}</span>
+          <h2>{{screenshots_title}}</h2>
+          <p>{{screenshots_lead}}</p>
+        </div>
+        <div class="gallery" tabindex="0" aria-label="{{screenshots_label|attr}}">
+          <figure class="shot">
+            <div class="phone"><picture><source media="(prefers-color-scheme: dark)" srcset="{{images}}pets-dark.webp"><img src="{{images}}pets.webp" alt="{{shot_pets_alt|attr}}" width="660" height="1434" loading="lazy"></picture></div>
+            <figcaption><strong>{{shot_pets_title}}</strong><span>{{shot_pets_text}}</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="phone"><picture><source media="(prefers-color-scheme: dark)" srcset="{{images}}pet-dark.webp"><img src="{{images}}pet.webp" alt="{{shot_pet_alt|attr}}" width="660" height="1434" loading="lazy"></picture></div>
+            <figcaption><strong>{{shot_pet_title}}</strong><span>{{shot_pet_text}}</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="phone"><picture><source media="(prefers-color-scheme: dark)" srcset="{{images}}weights-dark.webp"><img src="{{images}}weights.webp" alt="{{shot_weights_alt|attr}}" width="660" height="1434" loading="lazy"></picture></div>
+            <figcaption><strong>{{shot_weights_title}}</strong><span>{{shot_weights_text}}</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="phone"><picture><source media="(prefers-color-scheme: dark)" srcset="{{images}}vaccinations-dark.webp"><img src="{{images}}vaccinations.webp" alt="{{shot_vaccinations_alt|attr}}" width="660" height="1434" loading="lazy"></picture></div>
+            <figcaption><strong>{{shot_vaccinations_title}}</strong><span>{{shot_vaccinations_text}}</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="phone"><picture><source media="(prefers-color-scheme: dark)" srcset="{{images}}therapy-dark.webp"><img src="{{images}}therapy.webp" alt="{{shot_therapy_alt|attr}}" width="660" height="1434" loading="lazy"></picture></div>
+            <figcaption><strong>{{shot_therapy_title}}</strong><span>{{shot_therapy_text}}</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="phone"><picture><source media="(prefers-color-scheme: dark)" srcset="{{images}}calendar-dark.webp"><img src="{{images}}calendar.webp" alt="{{shot_calendar_alt|attr}}" width="660" height="1434" loading="lazy"></picture></div>
+            <figcaption><strong>{{shot_calendar_title}}</strong><span>{{shot_calendar_text}}</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="phone"><picture><source media="(prefers-color-scheme: dark)" srcset="{{images}}documents-dark.webp"><img src="{{images}}documents.webp" alt="{{shot_documents_alt|attr}}" width="660" height="1434" loading="lazy"></picture></div>
+            <figcaption><strong>{{shot_documents_title}}</strong><span>{{shot_documents_text}}</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="phone"><picture><source media="(prefers-color-scheme: dark)" srcset="{{images}}costs-dark.webp"><img src="{{images}}costs.webp" alt="{{shot_costs_alt|attr}}" width="660" height="1434" loading="lazy"></picture></div>
+            <figcaption><strong>{{shot_costs_title}}</strong><span>{{shot_costs_text}}</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="phone"><picture><source media="(prefers-color-scheme: dark)" srcset="{{images}}clinic-dark.webp"><img src="{{images}}clinic.webp" alt="{{shot_clinic_alt|attr}}" width="660" height="1434" loading="lazy"></picture></div>
+            <figcaption><strong>{{shot_clinic_title}}</strong><span>{{shot_clinic_text}}</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="phone"><picture><source media="(prefers-color-scheme: dark)" srcset="{{images}}settings-dark.webp"><img src="{{images}}settings.webp" alt="{{shot_settings_alt|attr}}" width="660" height="1434" loading="lazy"></picture></div>
+            <figcaption><strong>{{shot_settings_title}}</strong><span>{{shot_settings_text}}</span></figcaption>
+          </figure>
+        </div>
+        <p class="gallery-hint">{{screenshots_hint}}</p>
+      </div>
+    </section>
+
+<!-- end:screenshots -->
+    <!-- MARK: For the vet -->
+    <section id="vet" class="section-alt">
+      <div class="container split">
+        <div>
+          <span class="eyebrow">{{nav_vet}}</span>
+          <h2>{{vet_title}}</h2>
+          <p>{{vet_lead}}</p>
+          <ul class="checklist">
+            <li>{{vet_item_report}}</li>
+            <li>{{vet_item_send}}</li>
+            <li>{{vet_item_clinics}}</li>
+            <li>{{vet_item_documents}}</li>
+            <li>{{vet_item_details}}</li>
+          </ul>
+        </div>
+<!-- if:screenshots -->
+        <div class="split-phone">
+          <div class="phone"><picture><source media="(prefers-color-scheme: dark)" srcset="{{images}}health-report-dark.webp"><img src="{{images}}health-report.webp" alt="{{vet_report_alt|attr}}" width="660" height="1434" loading="lazy"></picture></div>
+        </div>
+<!-- end:screenshots -->
+<!-- if:no-screenshots -->
+        <!-- Until the screenshots are taken: the health report's first page, drawn. -->
+        <div class="report-sheet" aria-hidden="true">
+          <div class="report-head">
+            <div class="record-avatar"><svg><use href="#i-paw"/></svg></div>
+            <div><strong>Paco</strong><span>{{sample_report}}</span></div>
+          </div>
+          <dl>
+            <div><dt>{{sample_breed_label}}</dt><dd>Rottweiler</dd></div>
+            <div><dt>{{sample_microchip}}</dt><dd>380260101234567</dd></div>
+            <div><dt>{{sample_allergies}}</dt><dd>{{sample_allergies_value}}</dd></div>
+            <div><dt>{{sample_clinic}}</dt><dd>Clinica Veterinaria Rossi</dd></div>
+          </dl>
+          <div class="report-chart"><svg viewBox="0 0 300 80" preserveAspectRatio="none"><polyline points="0,60 40,52 80,55 120,40 160,44 200,30 240,34 300,22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg></div>
+          <div class="report-lines"><span></span><span></span><span></span></div>
+        </div>
+<!-- end:no-screenshots -->
+      </div>
+    </section>
+
+    <!-- MARK: Mac -->
+    <section id="mac">
+<!-- if:screenshots -->
+      <div class="container split mac">
+        <div class="mac-shots">
+          <picture><source media="(prefers-color-scheme: dark)" srcset="{{images}}mac-window-dark.webp"><img class="mac-window" src="{{images}}mac-window.webp" alt="{{mac_window_alt|attr}}" width="1100" height="766" loading="lazy"></picture>
+          <picture><source media="(prefers-color-scheme: dark)" srcset="{{images}}mac-menu-bar-dark.webp"><img class="mac-menu" src="{{images}}mac-menu-bar.webp" alt="{{mac_menu_alt|attr}}" width="360" height="374" loading="lazy"></picture>
+        </div>
+<!-- end:screenshots -->
+<!-- if:no-screenshots -->
+      <div class="container narrow">
+<!-- end:no-screenshots -->
+        <div>
+          <span class="eyebrow">Mac</span>
+          <h2>{{mac_title}}</h2>
+          <p>{{mac_lead}}</p>
+          <ul class="checklist">
+            <li>{{mac_item_menu_bar}}</li>
+            <li>{{mac_item_shortcuts}}</li>
+            <li>{{mac_item_sidebar}}</li>
+            <li>{{mac_item_drop}}</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: Privacy -->
+    <section id="privacy" class="section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{{nav_privacy}}</span>
+          <h2>{{privacy_title}}</h2>
+          <p>{{privacy_lead}}</p>
+        </div>
+        <div class="privacy-points">
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-person"/></svg></div>
+            <h3>{{privacy_account_title}}</h3>
+            <p>{{privacy_account_text}}</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-eye-off"/></svg></div>
+            <h3>{{privacy_tracking_title}}</h3>
+            <p>{{privacy_tracking_text}}</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-phone"/></svg></div>
+            <h3>{{privacy_device_title}}</h3>
+            <p>{{privacy_device_text}}</p>
+          </article>
+        </div>
+        <p class="section-more"><a href="{{home}}privacy/">{{privacy_policy_link}}</a></p>
+      </div>
+    </section>
+
+    <!-- MARK: Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-card">
+          <span class="eyebrow">{{nav_contact}}</span>
+          <h2>{{contact_title}}</h2>
+          <p>{{contact_lead}}</p>
+          <div class="actions">
+            <!-- Placeholder address, the same as AppInfo.supportEmail in the app: replace both before release. -->
+            <a class="button" href="mailto:support@example.com?subject=Trackpet">
+              <svg width="20" height="20" aria-hidden="true"><use href="#i-mail"/></svg>
+              {{contact_button}}
+            </a>
+          </div>
+          <p class="email"><a href="mailto:support@example.com?subject=Trackpet">support@example.com</a></p>
+
+          <div class="faq">
+            <details>
+              <summary>{{faq_download_question}}</summary>
+              <p>{{faq_download_answer}}</p>
+            </details>
+            <details>
+              <summary>{{faq_devices_question}}</summary>
+              <p>{{faq_devices_answer}}</p>
+            </details>
+            <details>
+              <summary>{{faq_pets_question}}</summary>
+              <p>{{faq_pets_answer}}</p>
+            </details>
+            <details>
+              <summary>{{faq_report_question}}</summary>
+              <p>{{faq_report_answer}}</p>
+            </details>
+            <details>
+              <summary>{{faq_new_iphone_question}}</summary>
+              <p>{{faq_new_iphone_answer}}</p>
+            </details>
+          </div>
+          <p class="section-more"><a href="{{home}}support/">{{faq_more}}</a></p>
+        </div>
+      </div>
+    </section>

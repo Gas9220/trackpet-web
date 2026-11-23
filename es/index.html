@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trackpet – La salud de tu mascota, en un solo lugar</title>
+  <meta name="description" content="Trackpet guarda los registros de salud de tus mascotas en iPhone, iPad y Mac: pesos, vacunas, antiparasitarios, tratamientos, citas y documentos, con recordatorios y una ficha de salud para el veterinario.">
+  <meta name="theme-color" content="#0088ff">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Trackpet – La salud de tu mascota, en un solo lugar">
+  <meta property="og:description" content="Los registros de salud de tus mascotas, recordatorios y una ficha para el veterinario, en iPhone, iPad y Mac.">
+  <meta property="og:image" content="https://gas9220.github.io/trackpet-web/images/es/social.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:url" content="https://gas9220.github.io/trackpet-web/es/">
+  <link rel="canonical" href="https://gas9220.github.io/trackpet-web/es/">
+  <link rel="alternate" hreflang="en" href="https://gas9220.github.io/trackpet-web/">
+  <link rel="alternate" hreflang="it" href="https://gas9220.github.io/trackpet-web/it/">
+  <link rel="alternate" hreflang="fr" href="https://gas9220.github.io/trackpet-web/fr/">
+  <link rel="alternate" hreflang="es" href="https://gas9220.github.io/trackpet-web/es/">
+  <link rel="alternate" hreflang="x-default" href="https://gas9220.github.io/trackpet-web/">
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
+  <script>
+    // Before the page draws, so a theme chosen earlier doesn't flash the other one first.
+    try {
+      var chosenTheme = localStorage.getItem("theme");
+      if (chosenTheme) document.documentElement.dataset.theme = chosenTheme;
+    } catch (error) {}
+  </script>
+  <noscript><style>.theme-button { display: none; }</style></noscript>
+  <link rel="stylesheet" href="../styles.css">
+
+</head>
+<body>
+
+  <!-- Icons used on the page, drawn once and reused with <use>. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-paw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="7" cy="9" rx="1.8" ry="2.4"/><ellipse cx="11" cy="5.6" rx="1.8" ry="2.4"/><ellipse cx="15.5" cy="6.4" rx="1.8" ry="2.4"/><ellipse cx="19" cy="10.4" rx="1.6" ry="2.2"/><path d="M8.2 17.2c0-2.8 2-5.7 4.6-5.7s4.6 2.9 4.6 5.7c0 1.8-1.2 2.8-2.6 2.8-1 0-1.3-.6-2-.6s-1 .6-2 .6c-1.4 0-2.6-1-2.6-2.8z"/></symbol>
+      <symbol id="i-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="4"/><path d="M8.5 10a5 5 0 0 1 7 0"/><path d="M12 10.5l1.5-1.5"/></symbol>
+      <symbol id="i-syringe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2.5l3.5 3.5M19.7 4.3L16 8"/><path d="M14 5l5 5"/><path d="M16.5 7.5L7 17l-2.5.5.5-2.5 9.5-9.5"/><path d="M10 9.5l1.5 1.5M8 11.5L9.5 13"/><path d="M4.5 19.5l-2 2"/></symbol>
+      <symbol id="i-pill" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="19" height="8" rx="4" transform="rotate(-45 12 12)"/><path d="M8.6 8.6l6.8 6.8"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 21h4"/></symbol>
+      <symbol id="i-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M9 13h7M9 17h4"/></symbol>
+      <symbol id="i-report" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M12.5 18.5s-3.5-2.1-3.5-4.4a1.8 1.8 0 0 1 3.5-.6 1.8 1.8 0 0 1 3.5.6c0 2.3-3.5 4.4-3.5 4.4z"/></symbol>
+      <symbol id="i-clinic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5L12 4l8.5 6.5"/><path d="M5.5 9v11h13V9"/><path d="M12 11v6M9 14h6"/></symbol>
+      <symbol id="i-coins" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9" cy="7" rx="6" ry="2.8"/><path d="M3 7v5c0 1.5 2.7 2.8 6 2.8s6-1.3 6-2.8V7"/><path d="M9 14.8v2.4c0 1.5 2.7 2.8 6 2.8s6-1.3 6-2.8v-5c0-1.4-2.4-2.6-5.5-2.8"/><path d="M15 15c3.3 0 6-1.3 6-2.8"/></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M4 15l4.5-4.5 3.5 3 7-7"/><path d="M15 6.5h4v4"/></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+      <symbol id="i-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="11" rx="2"/><path d="M2 19.5h20"/></symbol>
+      <symbol id="i-export" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11M7.5 9.5L12 14l4.5-4.5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+      <symbol id="i-person" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+      <symbol id="i-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M10.6 6.1A9.6 9.6 0 0 1 12 6c5 0 9 6 9 6a16 16 0 0 1-2.5 3.1M6.6 6.6C4.4 8.2 3 12 3 12s4 6 9 6a8.8 8.8 0 0 0 4.4-1.2"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2" width="11" height="20" rx="2.5"/><path d="M11 18h2"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5a2 2 0 0 1 2-2h2.5L9 4.5h6l1.5 2H19a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></symbol>
+      <symbol id="i-access" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="1.5"/><path d="M5 8.5l7 1.5 7-1.5"/><path d="M12 10v4.5M12 14.5l-3.5 6M12 14.5l3.5 6"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 5 5-5"/></symbol>
+      <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    </defs>
+  </svg>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="#top">
+        <img src="../images/app-icon.png" alt="" width="32" height="32">
+        Trackpet
+      </a>
+      <div class="header-end">
+        <nav class="site-nav" aria-label="Principal">
+          <a href="#features">Funciones</a>
+          <a href="#vet">Para el veterinario</a>
+          <a href="#mac">Mac</a>
+          <a href="#privacy">Privacidad</a>
+          <a href="#contact">Contacto</a>
+        </nav>
+        <div class="header-controls">
+          <button class="theme-button" type="button" data-to-dark="Cambiar al tema oscuro" data-to-light="Cambiar al tema claro">
+            <svg class="moon" aria-hidden="true"><use href="#i-moon"/></svg>
+            <svg class="sun" aria-hidden="true"><use href="#i-sun"/></svg>
+          </button>
+          <details class="language-menu">
+            <summary aria-label="Idioma: Español">
+              <svg class="globe" aria-hidden="true"><use href="#i-globe"/></svg>
+              <span>Español</span>
+              <svg class="chevron" aria-hidden="true"><use href="#i-chevron"/></svg>
+            </summary>
+            <ul>
+              <li><a href="../" hreflang="en" lang="en" data-language="en">English<svg class="tick" aria-hidden="true"><use href="#i-tick"/></svg></a></li>
+              <li><a href="../it/" hreflang="it" lang="it" data-language="it">Italiano<svg class="tick" aria-hidden="true"><use href="#i-tick"/></svg></a></li>
+              <li><a href="../fr/" hreflang="fr" lang="fr" data-language="fr">Français<svg class="tick" aria-hidden="true"><use href="#i-tick"/></svg></a></li>
+              <li><a href="../es/" hreflang="es" lang="es" data-language="es" aria-current="page">Español<svg class="tick" aria-hidden="true"><use href="#i-tick"/></svg></a></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- MARK: Hero -->
+    <section class="hero">
+      <div class="container">
+        <div>
+          <img class="hero-icon" src="../images/app-icon.png" alt="Icono de la app Trackpet" width="88" height="88">
+          <h1>La salud de tu mascota,<br>en <span class="accent">un solo lugar</span>.</h1>
+          <p class="lead">Pesos, vacunas, antiparasitarios, tratamientos, citas y documentos, con un recordatorio cuando toca algo y una ficha de salud lista para el veterinario. Para iPhone, iPad y Mac.</p>
+          <div class="actions">
+            <a class="button" href="#features">Descubre qué hace</a>
+            <a class="button secondary" href="#contact">Contáctanos</a>
+          </div>
+          <p class="status-note">Muy pronto en el App Store.</p>
+          <ul class="platforms" aria-label="Disponible para">
+            <li>iPhone</li>
+            <li>iPad</li>
+            <li>Mac</li>
+          </ul>
+        </div>
+        <!-- Until the screenshots are taken: a pet's records, drawn as the app's page shows them. -->
+        <div class="hero-records" aria-hidden="true">
+          <div class="record-card">
+            <div class="record-pet">
+              <div class="record-avatar"><svg><use href="#i-paw"/></svg></div>
+              <div><strong>Paco</strong><span>Perro · Rottweiler</span></div>
+            </div>
+            <ul class="record-rows">
+              <li><span class="record-symbol" style="--tint: #34c759"><svg><use href="#i-scale"/></svg></span><span class="record-title">Pesos</span><span class="record-value">29.8 kg</span></li>
+              <li><span class="record-symbol" style="--tint: #ff9500"><svg><use href="#i-syringe"/></svg></span><span class="record-title">Vacunas</span><span class="record-value warning">Refuerzo el 5 dic</span></li>
+              <li><span class="record-symbol" style="--tint: #af52de"><svg><use href="#i-pill"/></svg></span><span class="record-title">Tratamientos</span><span class="record-value">Día 5 de 12</span></li>
+              <li><span class="record-symbol" style="--tint: #0088ff"><svg><use href="#i-calendar"/></svg></span><span class="record-title">Citas</span><span class="record-value">20 nov, 15:30</span></li>
+              <li><span class="record-symbol" style="--tint: #ff2d55"><svg><use href="#i-report"/></svg></span><span class="record-title">Ficha de salud</span><span class="record-value">PDF</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: Features -->
+    <section id="features" class="section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Funciones</span>
+          <h2>Todo lo que pregunta el veterinario, a un toque.</h2>
+          <p>Cada registro que necesitan tus mascotas, para todas las que tengas: perros, gatos, conejos, pájaros, peces, tortugas y más.</p>
+        </div>
+        <div class="features">
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-paw"/></svg></div>
+            <h3>Todos sus registros</h3>
+            <p>La página de cada mascota muestra de un vistazo su último peso, temperatura, alimentación, tratamiento, vacuna, antiparasitario, cita y baño, con sus alergias donde no se pueden pasar por alto.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-chart"/></svg></div>
+            <h3>Pesos y temperaturas</h3>
+            <p>Un gráfico de cada pesaje, con el cambio, el mínimo y el máximo, y cuánto falta para el peso objetivo. Las temperaturas dicen si son normales para la especie.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-syringe"/></svg></div>
+            <h3>Vacunas y antiparasitarios</h3>
+            <p>Los refuerzos que faltan por poner, el más cercano primero, y cuántos días de cobertura le quedan a cada antiparasitario.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-pill"/></svg></div>
+            <h3>Tratamientos y dosis</h3>
+            <p>Cada medicamento con su dosis y las horas en que se da. Marca cada dosis como dada, y mira cuántas se han dado hasta ahora.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-bell"/></svg></div>
+            <h3>Recordatorios</h3>
+            <p>A la hora de cada dosis, antes de una cita, y el día antes de un refuerzo o del fin de una cobertura. Marca una dosis como dada desde la misma notificación.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-calendar"/></svg></div>
+            <h3>Calendario</h3>
+            <p>Los registros de todas tus mascotas en un mes, un punto por cada tipo, y lo que pasó o está previsto cada día.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-note"/></svg></div>
+            <h3>Documentos</h3>
+            <p>Análisis, recetas, certificados y facturas, desde Fotos o Archivos, o escaneados con la cámara. Con búsqueda, y una sección por año.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-report"/></svg></div>
+            <h3>Ficha de salud</h3>
+            <p>Un PDF con los datos y los registros de una mascota, para su veterinario o quien la cuide, para compartir, imprimir o anotar.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-clinic"/></svg></div>
+            <h3>Clínicas veterinarias</h3>
+            <p>Tus clínicas con su teléfono, correo, dirección y veterinarios, compartidas por tus mascotas. Toca para llamar, escribir o encontrarlas en Mapas.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-coins"/></svg></div>
+            <h3>Gastos</h3>
+            <p>Lo que costó cada visita, vacuna, medicamento, antiparasitario y baño, año a año, para una mascota o para todas juntas.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-mic"/></svg></div>
+            <h3>Siri y Atajos</h3>
+            <p>“Registrar el peso de Paco en Trackpet”, o pregunta qué hay pendiente hoy o cuándo es la próxima cita. También en Spotlight y con el botón de acción.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-laptop"/></svg></div>
+            <h3>iPad y Mac</h3>
+            <p>Tus mascotas en una barra lateral, con el calendario y la página de cada una al lado. En el Mac, menús, atajos de teclado y lo pendiente de hoy en la barra de menús.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-export"/></svg></div>
+            <h3>Tus datos, a tu manera</h3>
+            <p>Haz una copia de cada mascota, con su foto y sus registros, en la app Archivos y restáurala, o exporta hojas de cálculo en CSV.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-globe"/></svg></div>
+            <h3>Hazla tuya</h3>
+            <p>Cinco iconos, kilos o libras, Celsius o Fahrenheit, y la app en English, Italiano, Français o Español, sea cual sea el idioma de tu dispositivo.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-access"/></svg></div>
+            <h3>Para todos</h3>
+            <p>VoiceOver en todo momento, y diseños que aguantan los tamaños de texto más grandes, en modo claro y oscuro.</p>
+          </article>
+        </div>
+        <p class="section-more"><a href="guide/">Cada función, explicada en la guía</a></p>
+      </div>
+    </section>
+
+    <!-- MARK: For the vet -->
+    <section id="vet" class="section-alt">
+      <div class="container split">
+        <div>
+          <span class="eyebrow">Para el veterinario</span>
+          <h2>Listo para el veterinario.</h2>
+          <p>Todo lo que necesita saber un veterinario, un cuidador o un nuevo dueño, en una sola ficha, y tus clínicas a un toque.</p>
+          <ul class="checklist">
+            <li>Una ficha de salud en PDF: datos, alergias, pesos con su gráfico, vacunas, tratamientos y más</li>
+            <li>Envía la ficha o un documento a la clínica de la mascota por correo, con un toque</li>
+            <li>La página de cada clínica: su teléfono, correo, dirección, veterinarios y las mascotas que atiende</li>
+            <li>Análisis y recetas a mano, escaneados o desde Archivos</li>
+            <li>El microchip, el seguro, los resultados de FIV y FeLV de un gato</li>
+          </ul>
+        </div>
+        <!-- Until the screenshots are taken: the health report's first page, drawn. -->
+        <div class="report-sheet" aria-hidden="true">
+          <div class="report-head">
+            <div class="record-avatar"><svg><use href="#i-paw"/></svg></div>
+            <div><strong>Paco</strong><span>Ficha de salud</span></div>
+          </div>
+          <dl>
+            <div><dt>Raza</dt><dd>Rottweiler</dd></div>
+            <div><dt>Microchip</dt><dd>380260101234567</dd></div>
+            <div><dt>Alergias</dt><dd>Ninguna</dd></div>
+            <div><dt>Clínica veterinaria</dt><dd>Clinica Veterinaria Rossi</dd></div>
+          </dl>
+          <div class="report-chart"><svg viewBox="0 0 300 80" preserveAspectRatio="none"><polyline points="0,60 40,52 80,55 120,40 160,44 200,30 240,34 300,22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg></div>
+          <div class="report-lines"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: Mac -->
+    <section id="mac">
+      <div class="container narrow">
+        <div>
+          <span class="eyebrow">Mac</span>
+          <h2>Como en casa en el Mac.</h2>
+          <p>Una app de Mac de verdad, con la barra lateral, los menús y los atajos de teclado que esperas, y lo pendiente de hoy a un clic en la barra de menús.</p>
+          <ul class="checklist">
+            <li>Lo pendiente de hoy en la barra de menús, donde puedes marcar una dosis como dada, incluso con la ventana cerrada</li>
+            <li>Atajos de teclado: ⌘N para una nueva mascota, ⌘0 para el calendario, ⌘, para los ajustes</li>
+            <li>Tus mascotas y el calendario en una barra lateral, con la página de cada una al lado</li>
+            <li>Suelta un documento en los documentos de una mascota para añadirlo</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: Privacy -->
+    <section id="privacy" class="section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Privacidad</span>
+          <h2>Los registros de tus mascotas son tuyos.</h2>
+          <p>Trackpet no recoge ningún dato. Lo que anotas queda entre tú y tus dispositivos.</p>
+        </div>
+        <div class="privacy-points">
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-person"/></svg></div>
+            <h3>Sin cuenta</h3>
+            <p>Abre la app y añade tu mascota. No hay nada en lo que registrarse.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-eye-off"/></svg></div>
+            <h3>Sin rastreo</h3>
+            <p>Sin anuncios, sin analíticas y sin código de terceros.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg aria-hidden="true"><use href="#i-phone"/></svg></div>
+            <h3>En tus dispositivos</h3>
+            <p>Tus mascotas, sus fotos, registros y documentos se guardan en tu dispositivo, y en ningún otro sitio.</p>
+          </article>
+        </div>
+        <p class="section-more"><a href="privacy/">Lee la política de privacidad</a></p>
+      </div>
+    </section>
+
+    <!-- MARK: Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-card">
+          <span class="eyebrow">Contacto</span>
+          <h2>Nos encantará saber de ti.</h2>
+          <p>¿Preguntas, ideas o algo que no funciona como debería? Escríbenos un correo y te responderemos.</p>
+          <div class="actions">
+            <!-- Placeholder address, the same as AppInfo.supportEmail in the app: replace both before release. -->
+            <a class="button" href="mailto:support@example.com?subject=Trackpet">
+              <svg width="20" height="20" aria-hidden="true"><use href="#i-mail"/></svg>
+              Escribir a soporte
+            </a>
+          </div>
+          <p class="email"><a href="mailto:support@example.com?subject=Trackpet">support@example.com</a></p>
+
+          <div class="faq">
+            <details>
+              <summary>¿Cuándo podré descargar Trackpet?</summary>
+              <p>Ya casi está: primero llegará una beta en TestFlight y después el App Store. Esta página enlazará a ella en cuanto salga.</p>
+            </details>
+            <details>
+              <summary>¿En qué dispositivos funciona?</summary>
+              <p>iPhone y iPad con iOS 26 o posterior, y Mac con macOS 26 o posterior.</p>
+            </details>
+            <details>
+              <summary>¿Qué mascotas puedo añadir?</summary>
+              <p>Todas las que quieras: perros, gatos, conejos, pájaros, peces, tortugas y otros reptiles, y cualquier otro animal como Otro. Cada una tiene sus registros, y el calendario las muestra todas juntas.</p>
+            </details>
+            <details>
+              <summary>¿Cómo le doy al veterinario los registros de mi mascota?</summary>
+              <p>En la página de tu mascota, toca Ficha de salud: Trackpet crea un PDF con sus datos y registros y lo abre, para que lo veas antes de compartirlo, imprimirlo o guardarlo. Si la mascota tiene una clínica con correo, Enviar la ficha de salud le escribe con la ficha adjunta.</p>
+            </details>
+            <details>
+              <summary>¿Cómo paso mis mascotas a un iPhone nuevo?</summary>
+              <p>En Ajustes › Copia, elige Hacer copia en Archivos y guarda el archivo en un sitio al que llegues desde el iPhone nuevo, como iCloud Drive. Después, en el iPhone nuevo, elige Restaurar copia de seguridad. La copia tiene cada mascota, con su foto, sus registros y sus documentos.</p>
+            </details>
+          </div>
+          <p class="section-more"><a href="support/">Más preguntas y respuestas</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 Trackpet</span>
+      <nav aria-label="Pie de página">
+        <a href="#features">Funciones</a>
+        <a href="guide/">Guía</a>
+        <a href="support/">Soporte</a>
+        <a href="privacy/">Política de privacidad</a>
+      </nav>
+      <span>Apple, iPhone, iPad y Mac son marcas comerciales de Apple Inc.</span>
+    </div>
+  </footer>
+
+  <script>
+    // The language menu: closes on a click outside it or on Escape, keeps the section you're
+    // reading when you switch, and remembers the choice so the English page stops redirecting.
+    (function () {
+      var menu = document.querySelector(".language-menu");
+      document.addEventListener("click", function (event) {
+        if (menu.open && !menu.contains(event.target)) menu.open = false;
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && menu.open) {
+          menu.open = false;
+          menu.querySelector("summary").focus();
+        }
+      });
+      menu.querySelectorAll("a[data-language]").forEach(function (link) {
+        link.addEventListener("click", function () {
+          try { localStorage.setItem("language", link.dataset.language); } catch (error) {}
+          link.href = link.href.split("#")[0] + location.hash;
+        });
+      });
+    })();
+
+    // The theme button: changes the theme and remembers the choice, until it's back to the device's
+    // own, which the page then follows again. A screenshot's dark <source> normally asks for the
+    // device's dark theme; while a theme is chosen, it's always or never used instead.
+    (function () {
+      var root = document.documentElement;
+      var button = document.querySelector(".theme-button");
+      var sources = document.querySelectorAll("picture source");
+      var device = window.matchMedia("(prefers-color-scheme: dark)");
+
+      function isDark() {
+        return root.dataset.theme ? root.dataset.theme === "dark" : device.matches;
+      }
+
+      function update() {
+        var media = { dark: "all", light: "not all" }[root.dataset.theme] || "(prefers-color-scheme: dark)";
+        sources.forEach(function (source) { source.media = media; });
+        var label = isDark() ? button.dataset.toLight : button.dataset.toDark;
+        button.title = label;
+        button.setAttribute("aria-label", label);
+      }
+
+      button.addEventListener("click", function () {
+        var dark = !isDark();
+        try {
+          if (dark === device.matches) {
+            localStorage.removeItem("theme");
+          } else {
+            localStorage.setItem("theme", dark ? "dark" : "light");
+          }
+        } catch (error) {}
+        if (dark === device.matches) {
+          delete root.dataset.theme;
+        } else {
+          root.dataset.theme = dark ? "dark" : "light";
+        }
+        update();
+      });
+      device.addEventListener("change", update);
+      update();
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guida – Trackpet</title>
+  <meta name="description" content="Come usare Trackpet: gli animali e i loro registri, terapie e dosi, promemoria, calendario, documenti, la scheda sanitaria, i centri veterinari, le spese, Siri, iPad e Mac, e i tuoi dati.">
+  <meta name="theme-color" content="#0088ff">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Guida – Trackpet">
+  <meta property="og:description" content="Come usare Trackpet: gli animali e i loro registri, terapie e dosi, promemoria, calendario, documenti, la scheda sanitaria, i centri veterinari, le spese, Siri, iPad e Mac, e i tuoi dati.">
+  <meta property="og:image" content="https://gas9220.github.io/trackpet-web/images/it/social.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:url" content="https://gas9220.github.io/trackpet-web/it/guide/">
+  <link rel="canonical" href="https://gas9220.github.io/trackpet-web/it/guide/">
+  <link rel="alternate" hreflang="en" href="https://gas9220.github.io/trackpet-web/guide/">
+  <link rel="alternate" hreflang="it" href="https://gas9220.github.io/trackpet-web/it/guide/">
+  <link rel="alternate" hreflang="fr" href="https://gas9220.github.io/trackpet-web/fr/guide/">
+  <link rel="alternate" hreflang="es" href="https://gas9220.github.io/trackpet-web/es/guide/">
+  <link rel="alternate" hreflang="x-default" href="https://gas9220.github.io/trackpet-web/guide/">
+  <link rel="icon" type="image/png" href="../../images/favicon.png">
+  <link rel="apple-touch-icon" href="../../images/apple-touch-icon.png">
+  <script>
+    // Before the page draws, so a theme chosen earlier doesn't flash the other one first.
+    try {
+      var chosenTheme = localStorage.getItem("theme");
+      if (chosenTheme) document.documentElement.dataset.theme = chosenTheme;
+    } catch (error) {}
+  </script>
+  <noscript><style>.theme-button { display: none; }</style></noscript>
+  <link rel="stylesheet" href="../../styles.css">
+
+</head>
+<body>
+
+  <!-- Icons used on the page, drawn once and reused with <use>. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-paw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="7" cy="9" rx="1.8" ry="2.4"/><ellipse cx="11" cy="5.6" rx="1.8" ry="2.4"/><ellipse cx="15.5" cy="6.4" rx="1.8" ry="2.4"/><ellipse cx="19" cy="10.4" rx="1.6" ry="2.2"/><path d="M8.2 17.2c0-2.8 2-5.7 4.6-5.7s4.6 2.9 4.6 5.7c0 1.8-1.2 2.8-2.6 2.8-1 0-1.3-.6-2-.6s-1 .6-2 .6c-1.4 0-2.6-1-2.6-2.8z"/></symbol>
+      <symbol id="i-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="4"/><path d="M8.5 10a5 5 0 0 1 7 0"/><path d="M12 10.5l1.5-1.5"/></symbol>
+      <symbol id="i-syringe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2.5l3.5 3.5M19.7 4.3L16 8"/><path d="M14 5l5 5"/><path d="M16.5 7.5L7 17l-2.5.5.5-2.5 9.5-9.5"/><path d="M10 9.5l1.5 1.5M8 11.5L9.5 13"/><path d="M4.5 19.5l-2 2"/></symbol>
+      <symbol id="i-pill" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="19" height="8" rx="4" transform="rotate(-45 12 12)"/><path d="M8.6 8.6l6.8 6.8"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 21h4"/></symbol>
+      <symbol id="i-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M9 13h7M9 17h4"/></symbol>
+      <symbol id="i-report" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M12.5 18.5s-3.5-2.1-3.5-4.4a1.8 1.8 0 0 1 3.5-.6 1.8 1.8 0 0 1 3.5.6c0 2.3-3.5 4.4-3.5 4.4z"/></symbol>
+      <symbol id="i-clinic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5L12 4l8.5 6.5"/><path d="M5.5 9v11h13V9"/><path d="M12 11v6M9 14h6"/></symbol>
+      <symbol id="i-coins" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9" cy="7" rx="6" ry="2.8"/><path d="M3 7v5c0 1.5 2.7 2.8 6 2.8s6-1.3 6-2.8V7"/><path d="M9 14.8v2.4c0 1.5 2.7 2.8 6 2.8s6-1.3 6-2.8v-5c0-1.4-2.4-2.6-5.5-2.8"/><path d="M15 15c3.3 0 6-1.3 6-2.8"/></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M4 15l4.5-4.5 3.5 3 7-7"/><path d="M15 6.5h4v4"/></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+      <symbol id="i-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="11" rx="2"/><path d="M2 19.5h20"/></symbol>
+      <symbol id="i-export" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11M7.5 9.5L12 14l4.5-4.5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+      <symbol id="i-person" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+      <symbol id="i-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M10.6 6.1A9.6 9.6 0 0 1 12 6c5 0 9 6 9 6a16 16 0 0 1-2.5 3.1M6.6 6.6C4.4 8.2 3 12 3 12s4 6 9 6a8.8 8.8 0 0 0 4.4-1.2"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2" width="11" height="20" rx="2.5"/><path d="M11 18h2"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5a2 2 0 0 1 2-2h2.5L9 4.5h6l1.5 2H19a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></symbol>
+      <symbol id="i-access" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="1.5"/><path d="M5 8.5l7 1.5 7-1.5"/><path d="M12 10v4.5M12 14.5l-3.5 6M12 14.5l3.5 6"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 5 5-5"/></symbol>
+      <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    </defs>
+  </svg>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../#top">
+        <img src="../../images/app-icon.png" alt="" width="32" height="32">
+        Trackpet
+      </a>
+      <div class="header-end">
+        <nav class="site-nav" aria-label="Principale">
+          <a href="../#features">Funzioni</a>
+          <a href="../#vet">Per il veterinario</a>
+          <a href="../#mac">Mac</a>
+          <a href="../#privacy">Privacy</a>
+          <a href="../#contact">Contatti</a>
+        </nav>
+        <div class="header-controls">
+          <button class="theme-button" type="button" data-to-dark="Passa al tema scuro" data-to-light="Passa al tema chiaro">
+            <svg class="moon" aria-hidden="true"><use href="#i-moon"/></svg>
+            <svg class="sun" aria-hidden="true"><use href="#i-sun"/></svg>
+          </button>
+          <details class="language-menu">
+            <summary aria-label="Lingua: Italiano">
+              <svg class="globe" aria-hidden="true"><use href="#i-globe"/></svg>
+              <span>Italiano</span>
+              <svg class="chevron" aria-hidden="true"><use href="#i-chevron"/></svg>
+            </summary>
+            <ul>
+              <li><a href="../../guide/" hreflang="en" lang="en" data-language="en">English<svg class="tick" aria-hidden="true"><use href="#i-tick"/></svg></a></li>
+              <li><a href="../../it/guide/" hreflang="it" lang="it" data-language="it" aria-current="page">Italiano<svg class="tick" aria-hidden="true"><use href="#i-tick"/></svg></a></li>
+              <li><a href="../../fr/guide/" hreflang="fr" lang="fr" data-language="fr">Français<svg class="tick" aria-hidden="true"><use href="#i-tick"/></svg></a></li>
+              <li><a href="../../es/guide/" hreflang="es" lang="es" data-language="es">Español<svg class="tick" aria-hidden="true"><use href="#i-tick"/></svg></a></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- MARK: Guide -->
+    <section class="page">
+      <div class="container prose guide">
+        <span class="eyebrow">Guida</span>
+        <h1>Come funziona Trackpet</h1>
+        <p class="lead">Tutto quello che fa l'app, e dove trovarlo, dal tuo primo animale alla barra dei menu del Mac.</p>
+        <nav class="guide-contents" aria-label="Indice">
+          <h2>Indice</h2>
+          <ol>
+            <li><a href="#start">Per iniziare</a></li>
+            <li><a href="#page">La pagina di un animale</a></li>
+            <li><a href="#weights">Pesi e temperature</a></li>
+            <li><a href="#diet">Alimentazione e bagni</a></li>
+            <li><a href="#vaccinations">Vaccini e antiparassitari</a></li>
+            <li><a href="#therapies">Terapie e dosi</a></li>
+            <li><a href="#appointments">Appuntamenti e promemoria</a></li>
+            <li><a href="#calendar">Calendario</a></li>
+            <li><a href="#documents">Documenti</a></li>
+            <li><a href="#vet">La scheda sanitaria e i tuoi centri veterinari</a></li>
+            <li><a href="#costs">Spese</a></li>
+            <li><a href="#siri">Siri, Comandi Rapidi e la schermata Home</a></li>
+            <li><a href="#mac">iPad e Mac</a></li>
+            <li><a href="#settings">Impostazioni e i tuoi dati</a></li>
+          </ol>
+        </nav>
+        <!-- Each language's text is in src/guide/<lang>.html. -->
+        <h2 id="start">Per iniziare</h2>
+        <p>Tocca <strong>+</strong> (o <strong>Aggiungi animale</strong> se l'elenco è vuoto) per aggiungere un animale. Dagli un nome e una foto, dalla libreria o dalla fotocamera, e scegli la specie: cane, gatto, coniglio, uccello, pesce, tartaruga, rettile o Altro. Tutto il resto è facoltativo, e puoi completarlo dopo con <strong>Modifica animale</strong>:</p>
+        <ul>
+          <li>La <strong>razza</strong>, il <strong>sesso</strong>, se è castrato o sterilizzato, e la <strong>data di nascita</strong>, da cui l'app calcola l'età.</li>
+          <li>Le sue <strong>allergie</strong>, mostrate in rosso in cima alla sua pagina perché non sfuggano.</li>
+          <li>Il <strong>microchip</strong>, e l'<strong>assicurazione</strong> con la sua polizza.</li>
+          <li>Il suo <strong>centro veterinario</strong>, scelto tra i tuoi o aggiunto lì.</li>
+          <li>Per un gatto, i risultati <strong>FIV</strong> e <strong>FeLV</strong>: non testato, negativo o positivo.</li>
+        </ul>
+        <p>La prima volta che apri l'app, <strong>Prova con un animale esempio</strong> aggiunge Paco, un cane con registri di ogni tipo, per guardarti intorno. Eliminalo come qualunque altro animale quando hai finito.</p>
+        <p>Il menu <strong>Ordina</strong> dell'elenco mette i tuoi animali in ordine di <strong>Nome</strong>, <strong>Età</strong>, <strong>Data di aggiunta</strong> o <strong>Ultima modifica</strong>. Scorri un animale, o tienilo premuto, per modificarlo o eliminarlo: l'app chiede prima, perché eliminare un animale elimina tutti i suoi registri e documenti.</p>
+
+        <h2 id="page">La pagina di un animale</h2>
+        <p>Tocca un animale per aprirne la pagina. Sotto la foto, <strong>Registri</strong> ha una riga per ogni tipo, con l'ultimo a colpo d'occhio: l'ultimo peso e quando è stato preso, cosa mangia, l'ultima temperatura, la terapia in corso e il suo giorno, un richiamo da fare, i giorni di copertura rimasti all'antiparassitario, il prossimo appuntamento e l'ultimo bagno. Ciò che richiede attenzione è colorato: un richiamo scaduto o una copertura finita in rosso, uno in arrivo in arancione.</p>
+        <p>Tocca una riga per vedere tutti i registri di quel tipo, e lì <strong>+</strong> per aggiungerne uno. Tocca un registro per modificarlo, o scorrilo per eliminarlo. Sotto ci sono <strong>Documenti</strong> e <strong>Spese</strong>, poi i dettagli dell'animale e il suo <strong>Centro veterinario</strong>, di cui tocchi telefono, email e indirizzo per chiamare, scrivere o trovarlo in Mappe.</p>
+
+        <h2 id="weights">Pesi e temperature</h2>
+        <p><strong>Pesi</strong> elenca ogni pesata, la più recente per prima, ognuna con la variazione dalla precedente. Da due pesate in poi, un grafico le mostra nel periodo che scegli, con la variazione, il minimo e il massimo; tocca il grafico per leggere una pesata. Sotto, <strong>Imposta un peso obiettivo</strong> per vedere quanto l'animale deve perdere o prendere per raggiungerlo.</p>
+        <p>Le <strong>Temperature</strong> si registrano con la loro ora. Ognuna dice se è normale per la specie: <strong>Alta</strong> in rosso, <strong>Bassa</strong> in blu. Quando ne aggiungi una, l'editor mostra l'intervallo normale e l'ultima presa.</p>
+        <p>I pesi sono in chilogrammi o libbre e le temperature in Celsius o Fahrenheit, come scegli nelle Impostazioni.</p>
+
+        <h2 id="diet">Alimentazione e bagni</h2>
+        <p><strong>Alimentazione</strong> mostra cosa mangia l'animale <strong>Ora</strong>: il cibo, il tipo (Secco, Umido, Misto, Crudo o Casalingo), quanto al giorno in quanti pasti, e da quando. Una nuova alimentazione parte come quella attuale, così cambiare la quantità o i pasti è rapido, e ciò che mangiava prima resta sotto <strong>Prima</strong>.</p>
+        <p>I <strong>Bagni</strong> si registrano con il giorno e il luogo, <strong>Casa</strong> o <strong>Centro lavaggio</strong>, e l'elenco dice ogni quanto l'animale fa il bagno. Un nuovo bagno è dove è stato fatto l'ultimo.</p>
+
+        <h2 id="vaccinations">Vaccini e antiparassitari</h2>
+        <p>Un vaccino ha il nome e il giorno, e un <strong>Richiamo</strong> con la sua data se ne ha bisogno. <strong>Vaccini</strong> elenca prima i richiami ancora da fare, il più vicino per primo, poi ogni vaccino. Attiva <strong>Avvisami il giorno prima</strong> per una notifica alle 9:00 del giorno prima del richiamo. Un vaccino già fatto è a un tocco quando aggiungi il successivo.</p>
+        <p>Un antiparassitario è un <strong>Collare</strong>, delle <strong>Gocce</strong> o una <strong>Pillola</strong>, con il prodotto, il giorno in cui è stato applicato e il giorno in cui finisce la copertura. <strong>Copertura attiva</strong> mostra i giorni rimasti, in arancione negli ultimi. Uno nuovo parte come l'ultimo, così le gocce mensili o un collare da 8 mesi sono un tocco. Il suo promemoria arriva il giorno prima della fine della copertura.</p>
+
+        <h2 id="therapies">Terapie e dosi</h2>
+        <p>Una terapia ha il suo motivo, come un'otite, e le sue medicine. Aggiungi la terapia, poi le medicine dalla sua pagina: ognuna con la dose, il primo e l'ultimo giorno, e gli orari in cui si dà. I giorni della terapia vengono dalle sue medicine, e la sua pagina mostra a che punto è.</p>
+        <ul>
+          <li><strong>Oggi</strong>, nella pagina della terapia, ha un pulsante per ogni orario di oggi: toccalo per segnare la dose come somministrata, o di nuovo per annullarla.</li>
+          <li>Ogni medicina dice quante dosi sono state date finora, su quelle previste.</li>
+          <li>Con i promemoria attivi, una notifica arriva a ogni orario, ogni giorno della medicina. Il suo pulsante <strong>Somministrata</strong> segna la dose senza aprire l'app.</li>
+          <li><strong>Già usate</strong> ridà una medicina con la sua dose, per gli stessi giorni.</li>
+        </ul>
+
+        <h2 id="appointments">Appuntamenti e promemoria</h2>
+        <p>Un appuntamento ha il motivo, la data e l'ora, e un luogo, che può essere il centro veterinario dell'animale con un tocco. <strong>Avvisami</strong> invia una notifica <strong>1 ora prima</strong>, <strong>1 giorno prima</strong> o <strong>2 giorni prima</strong>, e <strong>Aggiungi al Calendario</strong> lo mette anche nel tuo calendario. <strong>Appuntamenti</strong> elenca quelli in programma, il più vicino per primo, poi quelli passati.</p>
+        <p>L'app chiede di inviare notifiche solo quando attivi un promemoria per la prima volta. Toccare un promemoria apre il suo registro. Impostazioni › <strong>Notifiche</strong> mostra se sono consentite, e apre le impostazioni di sistema se sono disattivate.</p>
+
+        <h2 id="calendar">Calendario</h2>
+        <p>Il pannello <strong>Calendario</strong> (su iPad e Mac, la prima riga della barra laterale) mostra i registri di tutti gli animali su un mese, con un pallino sotto ogni giorno per ogni tipo di registro. Tocca un giorno per vedere tutto ciò che c'è, per tutti i tuoi animali: pesate, temperature, vaccini, bagni e appuntamenti, una nuova alimentazione, i richiami e gli antiparassitari in scadenza, e i giorni di una terapia. Tocca una voce per aprirla. <strong>Oggi</strong> ti riporta a oggi, e il menu del filtro mostra <strong>Tutti i registri</strong> o un solo tipo.</p>
+
+        <h2 id="documents">Documenti</h2>
+        <p>Tieni gli <strong>Esami</strong>, le <strong>Ricette</strong>, i <strong>Certificati</strong>, il <strong>Libretto delle vaccinazioni</strong> e le <strong>Fatture</strong> di un animale insieme ai suoi registri. Aggiungine uno con <strong>Scansiona documento</strong>, che trasforma le pagine scansionate con la fotocamera in un unico PDF, con <strong>Scegli foto</strong> o <strong>Scegli file</strong>, o trascinando un file sull'elenco su iPad e Mac. Dagli un titolo, un tipo, una data e delle note.</p>
+        <p>I documenti sono in una sezione per ogni anno, il più recente per primo. Cercali per titolo, tipo, nota, centro veterinario, dottore o anno. Toccane uno per aprirlo in Quick Look, dove puoi condividerlo, stamparlo o annotarlo.</p>
+
+        <h2 id="vet">La scheda sanitaria e i tuoi centri veterinari</h2>
+        <p>Nella pagina di un animale, <strong>Scheda sanitaria</strong> crea un PDF con i suoi dati e i suoi registri: allergie, microchip, centro veterinario e assicurazione, pesi con il loro grafico, temperature, alimentazione, vaccini e richiami, antiparassitari, terapie, appuntamenti, bagni e documenti. Si apre in Quick Look, così la vedi prima di condividerla, stamparla o salvarla.</p>
+        <p>I tuoi centri sono in Impostazioni › <strong>Centri veterinari</strong>, ognuno con telefono, email, indirizzo e dottori, e condivisi tra i tuoi animali. La pagina di un centro mostra i contatti, i dottori con l'ultimo giorno in cui ognuno ha visto un animale, e i suoi animali. Vaccini, appuntamenti, terapie e documenti possono indicare ciascuno un centro e il suo dottore.</p>
+        <p>Quando il centro dell'animale ha un'email, <strong>Invia la scheda sanitaria</strong>, nella sezione Centro veterinario della pagina, o <strong>Invia a</strong> il centro, nel menu di un documento, gli scrive un'email con il file allegato. La invii tu.</p>
+
+        <h2 id="costs">Spese</h2>
+        <p>Una visita, un vaccino, una medicina, un antiparassitario e un bagno possono avere ciascuno un costo, nel suo editor. Le <strong>Spese</strong> di un animale si vedono un anno alla volta: il totale, una barra per ogni mese, il totale di ogni tipo, e ogni spesa, che apre il suo registro. Passa a tutti gli animali insieme per vedere quanto è costato ciascuno.</p>
+
+        <h2 id="siri">Siri, Comandi Rapidi e la schermata Home</h2>
+        <p>Di' “Registra il peso di Paco in Trackpet”, o registra una temperatura o un bagno, e chiedi a Siri <strong>Cosa c'è da fare</strong> o quando è il <strong>Prossimo appuntamento</strong>, per un animale o per tutti. Funzionano anche in Spotlight, nell'app Comandi Rapidi e con il tasto Azione, senza impostare nulla.</p>
+        <ul>
+          <li>I tuoi animali sono in Spotlight: cerca il nome, la specie o la razza di un animale per aprirne la pagina.</li>
+          <li>Tieni premuta l'icona dell'app per <strong>Nuovo animale</strong> e i tuoi primi tre animali.</li>
+        </ul>
+
+        <h2 id="mac">iPad e Mac</h2>
+        <p>Su iPad e Mac i tuoi animali sono in una barra laterale, con il calendario come prima riga e la pagina che scegli accanto. Con una tastiera, ⌘N aggiunge un animale e ⌘, apre le impostazioni.</p>
+        <ul>
+          <li>I menu del Mac hanno <strong>Nuovo animale</strong> (⌘N), <strong>Impostazioni…</strong> (⌘,) e <strong>Calendario</strong> (⌘0).</li>
+          <li>Una zampa nella barra dei menu mostra cosa c'è da fare oggi per ogni animale, con le dosi del giorno da segnare, anche a finestra chiusa. Disattivala in Impostazioni › <strong>Barra dei menu</strong>.</li>
+        </ul>
+
+        <h2 id="settings">Impostazioni e i tuoi dati</h2>
+        <p>Tocca l'ingranaggio in cima all'elenco per le Impostazioni:</p>
+        <ul>
+          <li><strong>Lingua</strong>: quella del dispositivo, o English, Italiano, Français o Español solo per l'app.</li>
+          <li><strong>Peso</strong>, <strong>Temperatura</strong> e <strong>Aspetto</strong> (Sistema, Chiaro o Scuro), e l'<strong>Icona dell'app</strong>, una di cinque.</li>
+          <li><strong>Backup</strong>: <strong>Esegui backup su File</strong> salva ogni animale, con la foto, i registri e i documenti, in un unico file, e <strong>Ripristina da backup</strong> li riporta, sostituendo gli animali sul dispositivo. Gli animali non si sincronizzano ancora tra i dispositivi, quindi il backup è il modo per tenerli al sicuro, e per spostarli su un nuovo iPhone. L'app te lo ricorda se non fai un backup da un po'.</li>
+          <li><strong>Fogli di calcolo</strong>: <strong>Esporta in CSV</strong> condivide i tuoi animali e ogni tipo di registro come fogli di calcolo, per Numbers o Excel.</li>
+          <li><strong>Aiuto e feedback</strong>: <strong>Invia feedback</strong> ci scrive con i dettagli che aiutano a trovare un problema, mai i nomi, le note o le foto dei tuoi animali.</li>
+        </ul>
+        <p class="section-more"><a href="../support/">Altre domande? Vai all'assistenza</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 Trackpet</span>
+      <nav aria-label="Piè di pagina">
+        <a href="../#features">Funzioni</a>
+        <a href="../guide/">Guida</a>
+        <a href="../support/">Assistenza</a>
+        <a href="../privacy/">Informativa sulla privacy</a>
+      </nav>
+      <span>Apple, iPhone, iPad e Mac sono marchi di Apple Inc.</span>
+    </div>
+  </footer>
+
+  <script>
+    // The language menu: closes on a click outside it or on Escape, keeps the section you're
+    // reading when you switch, and remembers the choice so the English page stops redirecting.
+    (function () {
+      var menu = document.querySelector(".language-menu");
+      document.addEventListener("click", function (event) {
+        if (menu.open && !menu.contains(event.target)) menu.open = false;
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && menu.open) {
+          menu.open = false;
+          menu.querySelector("summary").focus();
+        }
+      });
+      menu.querySelectorAll("a[data-language]").forEach(function (link) {
+        link.addEventListener("click", function () {
+          try { localStorage.setItem("language", link.dataset.language); } catch (error) {}
+          link.href = link.href.split("#")[0] + location.hash;
+        });
+      });
+    })();
+
+    // The theme button: changes the theme and remembers the choice, until it's back to the device's
+    // own, which the page then follows again. A screenshot's dark <source> normally asks for the
+    // device's dark theme; while a theme is chosen, it's always or never used instead.
+    (function () {
+      var root = document.documentElement;
+      var button = document.querySelector(".theme-button");
+      var sources = document.querySelectorAll("picture source");
+      var device = window.matchMedia("(prefers-color-scheme: dark)");
+
+      function isDark() {
+        return root.dataset.theme ? root.dataset.theme === "dark" : device.matches;
+      }
+
+      function update() {
+        var media = { dark: "all", light: "not all" }[root.dataset.theme] || "(prefers-color-scheme: dark)";
+        sources.forEach(function (source) { source.media = media; });
+        var label = isDark() ? button.dataset.toLight : button.dataset.toDark;
+        button.title = label;
+        button.setAttribute("aria-label", label);
+      }
+
+      button.addEventListener("click", function () {
+        var dark = !isDark();
+        try {
+          if (dark === device.matches) {
+            localStorage.removeItem("theme");
+          } else {
+            localStorage.setItem("theme", dark ? "dark" : "light");
+          }
+        } catch (error) {}
+        if (dark === device.matches) {
+          delete root.dataset.theme;
+        } else {
+          root.dataset.theme = dark ? "dark" : "light";
+        }
+        update();
+      });
+      device.addEventListener("change", update);
+      update();
+    })();
+  </script>
+
+</body>
+</html>
